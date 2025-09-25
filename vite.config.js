@@ -2,23 +2,13 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
-  // Add these for Render deployment
+  plugins: [react(), tailwindcss()],
   build: {
-    outDir: 'dist',
-    sourcemap: false,
-    chunkSizeWarningLimit: 1600
+    outDir: 'dist'
   },
   preview: {
     port: 10000,
-    host: true
-  },
-  server: {
-    port: 3000
+    allowedHosts: true
   }
 })
