@@ -13,8 +13,8 @@ export default function AnimatedTitles() {
       <Typewriter
         options={{
           strings: [
-            "Full Stack Developer",
-            "Flutter Developer",
+            "Java Full-Stack Developer",
+            "Mern Stack Developer",
             "Open Source Contributor",
             "Problem Solver",
           ],

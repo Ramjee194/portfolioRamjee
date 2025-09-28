@@ -589,7 +589,7 @@ function Home() {
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
                   className="rounded-2xl w-full h-full object-cover border-4 border-white shadow-2xl"
-                  src="https://static.wowto.ai/editor/avatars/thumb/m1.png"
+                  src="https://ibb.co/mCFfzmVw"
                   alt="Ramjee Kumar Yadav"
                 />
                 <motion.div
