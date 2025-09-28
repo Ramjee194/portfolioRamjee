@@ -585,11 +585,11 @@ function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative w-80 h-80 mx-auto">
+              <div className="relative w-80 h-105 mx-auto">
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
                   className="rounded-2xl w-full h-full object-cover border-4 border-white shadow-2xl"
-                  src="https://ibb.co/mCFfzmVw"
+                  src="https://i.postimg.cc/W1n2r3Lk/photo-Ramjee1.jpg"
                   alt="Ramjee Kumar Yadav"
                 />
                 <motion.div
