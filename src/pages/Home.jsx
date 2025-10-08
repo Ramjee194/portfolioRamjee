@@ -178,7 +178,7 @@ function Home() {
         "Secure authentication",
         "Payment gateway integration",
       ],
-      link:"ttps://onelms-uode.onrender.com",
+      link:"https://onelms-uode.onrender.com",
       technologies: ["React", "Firebase", "Stripe", "Material-UI"],
       github: "https://github.com/Ramjee194/lms"
     },
