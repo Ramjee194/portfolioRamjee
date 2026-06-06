@@ -10,8 +10,7 @@ import "swiper/css/effect-coverflow";
 import AnimatedTitles from "../components/Animation";
 import { SiLeetcode, SiCodechef } from "react-icons/si";
 import { FaCode, FaLaptopCode } from "react-icons/fa";
-import { notesData } from "../data/notesData";
-import PDFViewerModal from "../components/PDFViewerModal";
+
 
 
 function Home() {
@@ -23,8 +22,7 @@ function Home() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [activeSkillCategory, setActiveSkillCategory] = useState("languages");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPdf, setSelectedPdf] = useState(null);
+
 
   // Enhanced Skills Data with Proper Categorization
   const skillCategories = {
@@ -110,10 +108,10 @@ function Home() {
 
   // Proficiency level colors
   const proficiencyColors = {
-    Basic: "from-gray-400 to-gray-500",
-    Intermediate: "from-blue-400 to-blue-500",
-    Advanced: "from-purple-400 to-purple-500",
-    Expert: "from-green-400 to-green-500"
+    Basic: "bg-gray-500",
+    Intermediate: "bg-blue-500",
+    Advanced: "bg-purple-500",
+    Expert: "bg-green-500"
   };
 
   // Custom cursor effect
@@ -242,42 +240,49 @@ function Home() {
       role: "Web Development Intern",
       company: "ABC Tech",
       year: "2023",
-      desc: "Worked on responsive web apps using React & Node.js.",
+      desc: "Developed responsive web pages and built RESTful API integrations using React and Node.js. Collaborated on design systems to ensure pixel-perfect user interfaces and optimized asset load speeds.",
       duration: "6 months",
-      achievements: ["Built 5 major features", "Improved performance by 40%", "Mentored 2 junior developers"]
+      achievements: [
+        "Built 5 major features including dynamic filters and listings.",
+        "Optimized web component styling to improve client rendering performance by 40%.",
+        "Participated in weekly code reviews and sprint planning sessions."
+      ]
     },
     {
       role: "Open Source Contributor",
       company: "GSSoC",
       year: "2024-2025",
-      desc: "Contributed to open-source projects, proposed solutions for MIT USA.",
+      desc: "Contributed code to open-source systems. Refactored layout components and improved responsive design compatibility on mobile web browsers.",
       duration: "1 year",
-      achievements: ["50+ commits", "8 pull requests merged", "3 features implemented"]
+      achievements: [
+        "Submitted 50+ commits fixing styling and layout alignment issues.",
+        "Got 8 pull requests merged in core frontend repositories.",
+        "Collaborated with project maintainers to test and document interface APIs."
+      ]
     },
     {
       role: "Brand Ambassador",
       company: "Naukri.com",
       year: "2024-2025",
-      desc: "Promoted platform awareness and organized campus events.",
+      desc: "Represented the platform on campus, helping peers create and optimize their technical profiles, and coordinating local coding meetups.",
       duration: "1 year",
-      achievements: ["110+ people registered", "Increased platform awareness"]
+      achievements: [
+        "Helped 110+ campus students set up and polish their developer profiles.",
+        "Increased awareness of job search tools and campus recruitment drives."
+      ]
     },
     {
-      role: "10 Star Coder",
-      company: "LeetCode",
+      role: "Competitive Coding Contributor",
+      company: "LeetCode & GfG",
       year: "2024-2025",
-      desc: "Active participant in competitive programming contests.",
-      duration: "2 year",
-      achievements: ["500+ questions solved", "Ranked in top 30%", "Regular contest participation (weekly and Byweekly"]
-    },
-    {
-      role: "5 Star Coder",
-      company: "GeeksforGeeks",
-      year: "2024-2025",
-      desc: "Consistent problem solver on the platform.",
-      duration: "1 year",
-      achievements: ["100+ questions solved", "Ranked in top 30%", "Active in coding challenges"]
-    },
+      desc: "Solved 600+ data structures and algorithms problems to master optimization, dynamic programming, and complexity trade-offs.",
+      duration: "2 years",
+      achievements: [
+        "Solved 500+ LeetCode problems, ranking in the top 30% of contest participants.",
+        "Solved 100+ GeeksforGeeks problems focusing on graph theory and search trees.",
+        "Maintained a consistent coding streak across competitive platforms."
+      ]
+    }
   ];
 
  const socialLinks = [
@@ -290,7 +295,7 @@ function Home() {
   // Loading animation
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-gray-950 flex items-center justify-center z-50">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -316,7 +321,7 @@ function Home() {
   }
 
   return (
-    <div className={darkMode ? "bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white" : "bg-gradient-to-br from-gray-50 to-violet-50 text-gray-900"}>
+    <div className={darkMode ? "bg-gray-950 text-white" : "bg-white text-gray-900"}>
       
       {/* Custom Cursor */}
       <motion.div
@@ -330,7 +335,7 @@ function Home() {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: isScrolled ? 1 : 0, scale: isScrolled ? 1 : 0 }}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-3 rounded-full shadow-lg z-40 hover:from-purple-700 hover:to-indigo-700 transition-all"
+        className="fixed bottom-8 right-8 bg-purple-600 text-white p-3 rounded-full z-40 hover:bg-purple-700 transition-all"
       >
         <IoArrowUp size={24} />
       </motion.button>
@@ -342,21 +347,21 @@ function Home() {
         className={`w-full py-4 px-6 flex items-center justify-between fixed top-0 z-50 transition-all duration-300 ${
           isScrolled 
             ? darkMode 
-              ? "bg-gray-900/80 backdrop-blur-lg shadow-xl" 
-              : "bg-white/80 backdrop-blur-lg shadow-xl"
+              ? "bg-gray-900/80 backdrop-blur-lg" 
+              : "bg-white/80 backdrop-blur-lg"
             : "bg-transparent"
         }`}
       >
         <motion.h1 
           whileHover={{ scale: 1.05 }}
-          className="font-bold text-2xl cursor-pointer bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+          className="font-bold text-2xl cursor-pointer text-purple-400"
           onClick={scrollToTop}
         >
           Ramjee Kumar 
         </motion.h1>
         
         <nav className="hidden md:flex space-x-8 items-center font-medium">
-          {["home", "about", "notes", "skills", "projects", "experience", "contact"].map((section) => (
+          {["home", "about", "skills", "projects", "experience", "contact"].map((section) => (
             <button
               key={section}
               onClick={() => scrollToSection(section)}
@@ -370,7 +375,7 @@ function Home() {
               {activeSection === section && (
                 <motion.div
                   layoutId="activeSection"
-                  className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-indigo-400"
+                  className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-400"
                 />
               )}
             </button>
@@ -380,7 +385,7 @@ function Home() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white"
+            className="p-2 rounded-full bg-purple-600 text-white"
           >
             {darkMode ? <IoSunny size={20} /> : <IoMoon size={20} />}
           </motion.button>
@@ -406,7 +411,7 @@ function Home() {
             className="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center md:hidden"
           >
             <nav className="flex flex-col items-center space-y-8 text-2xl">
-              {["home", "about", "notes", "skills", "projects", "experience", "contact"].map((section) => (
+              {["home", "about", "skills", "projects", "experience", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -434,7 +439,7 @@ function Home() {
 
       {/* Enhanced Hero Section */}
       <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-indigo-500/10 to-violet-500/10"></div>
+        <div className="absolute inset-0 bg-gray-950/20"></div>
         
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -443,7 +448,7 @@ function Home() {
           className="relative z-10 max-w-4xl"
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-300 via-indigo-300 to-violet-300 bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl font-bold mb-6 text-purple-400"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -471,7 +476,7 @@ function Home() {
               href="https://revansh-it-sulotion.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 font-medium transition-all shadow-lg hover:shadow-purple-500/20 text-sm group"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 font-medium transition-all text-sm group"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
@@ -489,16 +494,16 @@ function Home() {
             transition={{ delay: 1, duration: 1 }}
           >
             <motion.button 
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r bg-black text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center space-x-2"
+              className="bg-black text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center space-x-2"
               onClick={() => scrollToSection("projects")}
             >
               <span>View Projects</span>
             </motion.button>
             
             <motion.a
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(156, 163, 175, 0.3)" }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://drive.google.com/file/d/1Iqkj-OOW1wS55yC8QR2AzsN0qITm5TE8/view?usp=sharing"
               download
@@ -556,66 +561,6 @@ function Home() {
         </motion.div>
       </section>
 
-      {/* Notes Section */}
-      <section id="notes" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
-          >
-            Interview Notes
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-gray-400 mb-12 max-w-xl mx-auto"
-          >
-            Access and download high-quality interview preparation PDFs to boost your learning.
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {notesData.map((note, idx) => (
-              <motion.div
-                key={note.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -8 }}
-                onClick={() => {
-                  setSelectedPdf(note);
-                  setIsModalOpen(true);
-                }}
-                className="relative flex flex-col justify-between p-6 rounded-2xl cursor-pointer bg-white/5 border border-white/10 hover:border-purple-500/40 shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                <div>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${note.color} text-2xl mb-4 group-hover:scale-110 transition-all shadow-md`}>
-                    {note.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                    {note.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 line-clamp-3 leading-relaxed">
-                    {note.description}
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-xs text-purple-400 font-semibold group-hover:underline">
-                    Read Notes
-                  </span>
-                  <span className="text-purple-400 transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Enhanced About Section */}
       <section id="about" className="py-20 px-6 bg-gray-50 dark:bg-gray-800/30">
         <div className="max-w-6xl mx-auto">
@@ -623,7 +568,7 @@ function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r bg-black bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 text-black dark:text-white"
           >
             About Me
           </motion.h2>
@@ -674,7 +619,7 @@ function Home() {
               <div className="relative w-65 h-80 mx-auto">
                 <motion.img 
                   whileHover={{ scale: 1.05 }}
-                  className="rounded-2xl w-full h-full object-cover border-4 border-white shadow-2xl"
+                  className="rounded-2xl w-full h-full object-cover border-4 border-white"
                   src="https://i.postimg.cc/sDCtLDjm/photo-Ramjee2.jpg"
                   alt="Ramjee Kumar Yadav"
                 />
@@ -683,7 +628,7 @@ function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.5, duration: 0.5 }}
-                  className="absolute -bottom-4 -right-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 rounded-xl shadow-lg"
+                  className="absolute -bottom-4 -right-4 bg-purple-600 text-white p-4 rounded-xl"
                 >
                   <div className="text-2xl font-bold">Fresher</div>
                   <div className="text-sm">No experience but more practices myself</div>
@@ -701,7 +646,7 @@ function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-4 text-purple-400"
           >
             Skills & Technologies
           </motion.h2>
@@ -730,7 +675,7 @@ function Home() {
                 onClick={() => setActiveSkillCategory(category)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2 ${
                   activeSkillCategory === category
-                    ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg"
+                    ? "bg-purple-600 text-white"
                     : "bg-white/10 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 hover:bg-purple-500/20"
                 }`}
               >
@@ -763,7 +708,7 @@ function Home() {
                     <span className="text-2xl">{skill.icon}</span>
                     <div>
                       <h3 className="font-bold text-lg">{skill.name}</h3>
-                      <span className={`text-xs px-2 py-1 rounded-full bg-gradient-to-r ${proficiencyColors[skill.proficiency]}`}>
+                      <span className={`text-xs px-2 py-1 rounded-full ${proficiencyColors[skill.proficiency]} text-white`}>
                         {skill.proficiency}
                       </span>
                     </div>
@@ -778,7 +723,7 @@ function Home() {
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, delay: idx * 0.1 }}
-                    className={`h-3 bg-gradient-to-r ${proficiencyColors[skill.proficiency]} rounded-full`}
+                    className={`h-3 ${proficiencyColors[skill.proficiency]} rounded-full`}
                   />
                 </div>
               </motion.div>
@@ -828,13 +773,13 @@ function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 text-purple-400"
           >
             Experience & Achievements
           </motion.h2>
 
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-indigo-600"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-purple-500"></div>
             
             {experiences.map((exp, idx) => (
               <motion.div
@@ -845,9 +790,9 @@ function Home() {
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                 className="relative mb-12 ml-12"
               >
-                <div className="absolute -left-12 top-0 w-8 h-8 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                <div className="absolute -left-12 top-0 w-8 h-8 bg-purple-600 rounded-full border-4 border-white dark:border-gray-900"></div>
                 
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl transition-all duration-300">
                   <span className="text-purple-500 font-bold text-sm bg-purple-500/10 px-3 py-1 rounded-full">{exp.year} • {exp.duration}</span>
                   <h3 className="text-xl font-bold mt-2">{exp.role} @ {exp.company}</h3>
                   <p className="text-gray-600 dark:text-gray-300 mt-2">{exp.desc}</p>
@@ -874,7 +819,7 @@ function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 text-purple-400"
           >
             Featured Projects
           </motion.h2>
@@ -894,7 +839,7 @@ function Home() {
                 onClick={() => setFilter(cat)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   filter === cat
-                    ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg"
+                    ? "bg-purple-600 text-white"
                     : "bg-white/10 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 hover:bg-purple-500/20"
                 }`}
               >
@@ -913,7 +858,7 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+                className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden transition-all duration-500"
               >
                 <div className="relative overflow-hidden">
                   <img 
@@ -921,7 +866,7 @@ function Home() {
                     alt={proj.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300" />
                   <div className="absolute top-4 right-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       proj.category === "AI" 
@@ -962,7 +907,7 @@ function Home() {
                         whileTap={{ scale: 0.95 }}
                         href={proj.link}
                         target="_blank"
-                        className="flex-1 bg-gradient-to-r bg-black text-white text-center py-2 rounded-lg font-semibold text-sm"
+                        className="flex-1 bg-black text-white text-center py-2 rounded-lg font-semibold text-sm"
                       >
                         Live Demo
                       </motion.a>
@@ -991,7 +936,7 @@ function Home() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 text-purple-400"
           >
             What People Say
           </motion.h2>
@@ -1017,7 +962,7 @@ function Home() {
             {testimonials.map((t, idx) => (
               <SwiperSlide key={idx} className="max-w-md">
                 <motion.div 
-                  className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg h-full"
+                  className="bg-white dark:bg-gray-800 p-8 rounded-2xl h-full"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -1041,14 +986,14 @@ function Home() {
 
       {/* Enhanced Contact Section */}
       <section id="contact" className="py-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-indigo-500/5 to-violet-500/5"></div>
+        <div className="absolute inset-0 bg-purple-500/5"></div>
         
         <div className="max-w-4xl mx-auto relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent"
+            className="text-4xl font-bold text-center mb-16 text-purple-400"
           >
             Get In Touch
           </motion.h2>
@@ -1087,7 +1032,7 @@ function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-purple-500 hover:text-white"
+                    className="p-3 bg-white dark:bg-gray-800 rounded-lg transition-all duration-300 hover:bg-purple-500 hover:text-white"
                   >
                     <social.icon size={20} />
                   </motion.a>
@@ -1126,10 +1071,10 @@ function Home() {
                 ></textarea>
               </div>
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg font-semibold"
+                className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold"
               >
                 Send Message
               </motion.button>
@@ -1147,7 +1092,7 @@ function Home() {
             viewport={{ once: true }}
             className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
           >
-            <div className="text-lg font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+            <div className="text-lg font-bold text-purple-400">
               Ramjee Kumar 
             </div>
             
@@ -1178,11 +1123,6 @@ function Home() {
         </div>
       </footer>
 
-      <PDFViewerModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        pdf={selectedPdf}
-      />
     </div>
   );
 }

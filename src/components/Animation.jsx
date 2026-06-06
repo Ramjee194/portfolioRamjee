@@ -15,6 +15,7 @@ export default function AnimatedTitles() {
           strings: [
             "Java Full-Stack Developer",
             "Mern Stack Developer",
+            "Founder of orbous.com",
             "Open Source Contributor",
             "Problem Solver",
           ],
