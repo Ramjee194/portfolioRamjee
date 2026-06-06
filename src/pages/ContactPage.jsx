@@ -48,7 +48,7 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
-        setSubmitStatus({ type: "success", message: "Message saved to MongoDB successfully!" });
+        setSubmitStatus({ type: "success", message: "Message send successfully!" });
         setFormData({ name: "", email: "", subject: "", message: "" });
         fetchMessages(); // Refresh feed immediately
       } else {
