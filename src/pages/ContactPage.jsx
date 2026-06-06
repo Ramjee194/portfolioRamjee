@@ -7,7 +7,7 @@ export default function ContactPage() {
   // Form State
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
-  
+
   // Real-time guestbook messaging state
   const [messages, setMessages] = useState([]);
   const [adminKeys, setAdminKeys] = useState({}); // Stores inline reply texts
@@ -48,7 +48,7 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
-        setSubmitStatus({ type: "success", message: "Message send successfully!" });
+        setSubmitStatus({ type: "success", message: "Message sent successfully!" });
         setFormData({ name: "", email: "", subject: "", message: "" });
         fetchMessages(); // Refresh feed immediately
       } else {
@@ -104,7 +104,7 @@ export default function ContactPage() {
       <AktuNavbar />
 
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        
+
         {/* Header */}
         <header className="mb-10 text-center sm:text-left">
           <span className="text-xs font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">
@@ -119,10 +119,10 @@ export default function ContactPage() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Side: Contact Form & FAQ */}
           <div className="lg:col-span-6 flex flex-col gap-8">
-            
+
             {/* Contact Form */}
             <div className="p-8 rounded-2xl bg-white/5 border border-white/10">
               <h3 className="text-xl font-bold text-white flex items-center gap-2 mb-6 border-b border-white/5 pb-3">
@@ -185,13 +185,12 @@ export default function ContactPage() {
                 </button>
 
                 {submitStatus.message && (
-                  <div className={`p-3 rounded-xl text-xs font-bold text-center mt-2 ${
-                    submitStatus.type === "success"
+                  <div className={`p-3 rounded-xl text-xs font-bold text-center mt-2 ${submitStatus.type === "success"
                       ? "bg-green-500/10 text-green-400 border border-green-500/20"
                       : submitStatus.type === "loading"
-                      ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
-                      : "bg-red-500/10 text-red-400 border border-red-500/20"
-                  }`}>
+                        ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                        : "bg-red-500/10 text-red-400 border border-red-500/20"
+                    }`}>
                     {submitStatus.message}
                   </div>
                 )}
@@ -218,7 +217,7 @@ export default function ContactPage() {
           {/* Right Side: Live MongoDB Guestbook / Message Feed */}
           <div className="lg:col-span-6 flex flex-col gap-6">
             <div className="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-5">
-              
+
               <div className="flex items-center justify-between border-b border-white/5 pb-3.5">
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
                   <IoChatbubbleEllipses className="text-purple-400" />
@@ -260,7 +259,7 @@ export default function ContactPage() {
                 {messages.length > 0 ? (
                   messages.map((msg) => (
                     <div key={msg._id} className="flex flex-col gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
-                      
+
                       {/* Client Question */}
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center justify-between gap-2">
